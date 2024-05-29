@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>单位计算器</title>
+</head>
+<body>
+    <form id="unitForm">
+        <!-- 每个输入栏与单位 -->
+        <div><input type="number" id="input0"> <span>.01</span></div>
+        <div><input type="number" id="input1"> <span>.02</span></div>
+        <div><input type="number" id="input2"> <span>.05</span></div>
+        <div><input type="number" id="input3"> <span>.1</span></div>
+        <div><input type="number" id="input4"> <span>.2</span></div>
+        <div><input type="number" id="input5"> <span>.5</span></div>
+        <div><input type="number" id="input6"> <span>1</span></div>
+        <div><input type="number" id="input7"> <span>2</span></div>
+        <div><input type="number" id="input8"> <span>5</span></div>
+        <div><input type="number" id="input9"> <span>10</span></div>
+        <div><input type="number" id="input10"> <span>20</span></div>
+        <div><input type="number" id="input11"> <span>50</span></div>
+        <div><input type="number" id="input12"> <span>100</span></div>
+        <!-- 新增默认值为250的输入框 -->
+        <div><input type="number" id="baseValue" value="250"> <span>基数</span></div>
+        <!-- 计算按钮 -->
+        <button type="button" onclick="calculateTotal()">计算结果</button>
+    </form>
+    <!-- 显示结果 -->
+    <div>总和: <span id="result">0</span></div>
+    <!-- 显示所有计算值和单位 -->
+    <div id="details"></div>
+
+    <script>
+        function calculateTotal() {
+            const units = [.01, .02, .05, .1, .2, .5, 1, 2, 5, 10, 20, 50, 100];
+            let total = 0;
+
+            // get total value
+            for (let i = 0; i < 13; i++) {
+                const input = document.getElementById('input' + i);
+                let calc = input.value * units[i];
+                total += calc;
+            }
+            document.getElementById('result').textContent = total.toFixed(2);
+
+
+            // get details for baseValue
+            let baseValue = document.getElementById('baseValue').value;
+            let details = '';
+            let realBase = 0;
+            
+            for (let i = 0; i < 13; i++) {
+                const input = document.getElementById('input' + i);
+
+                // when realBase less than baseValue, add the value
+                if (realBase + input.value * units[i] <= baseValue) {
+                    let calc = input.value * units[i];
+                    realBase += calc;
+                    
+                    // check input.value is not null
+                    if (input.value > 0) {
+                        details += `${input.value} x ${units[i]} = ${(input.value * units[i]).toFixed(2)}<br>`;
+                    } else {
+                        details += `0 x ${units[i]} = ${(input.value * units[i]).toFixed(2)}<br>`;
+                    }
+
+
+                    
+                    continue;
+                }
+
+                // realBase not enough, now to reach the baseValue
+                if (realBase < baseValue) {
+
+                    // find the largest unit that can be added
+                    let j = 0;
+                    for (j = 0; j < input; j++) {
+                        realBase += units[i];
+                        if (realBase >= baseValue) {
+                            break;
+                        }
+                    }
+
+
+                    details += ` ${j} x ${units[i]} = ${(j * units[i]).toFixed(2)}<br>`;
+                }
+            }
+
+            document.getElementById('details').innerHTML = details + `基数: ${realBase.toFixed(2)}`;
+        }
+
+    </script>
+</body>
+</html>
