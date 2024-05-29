@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catan Counter</title>
+    <style>
+        .area {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        label {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Catan Counter</h1>
+
+    <div id="area1" class="area">
+        <div class="input-group">
+            <input type="number" placeholder="数值 1">
+            <label>🪵</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 2">
+            <label>🧱</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 3">
+            <label>🐑</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 4">
+            <label>🌾</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 5">
+            <label>🪨</label>
+        </div>
+        <div class="buttons">
+            <button onclick="updateValues('area1', 'road')">Road</button>
+            <button onclick="updateValues('area1', 'village')">Village</button>
+            <button onclick="updateValues('area1', 'city')">City</button>
+            <button onclick="updateValues('area1', 'develop')">Develop</button>
+        </div>
+    </div>
+
+    <div id="area2" class="area">
+        <div class="input-group">
+            <input type="number" placeholder="数值 1">
+            <label>🪵</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 2">
+            <label>🧱</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 3">
+            <label>🐑</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 4">
+            <label>🌾</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 5">
+            <label>🪨</label>
+        </div>
+        <div class="buttons">
+            <button onclick="updateValues('area2', 'road')">Road</button>
+            <button onclick="updateValues('area2', 'village')">Village</button>
+            <button onclick="updateValues('area2', 'city')">City</button>
+            <button onclick="updateValues('area2', 'develop')">Develop</button>
+        </div>
+    </div>
+
+    <div id="area3" class="area">
+        <div class="input-group">
+            <input type="number" placeholder="数值 1">
+            <label>🪵</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 2">
+            <label>🧱</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 3">
+            <label>🐑</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 4">
+            <label>🌾</label>
+        </div>
+        <div class="input-group">
+            <input type="number" placeholder="数值 5">
+            <label>🪨</label>
+        </div>
+        <div class="buttons">
+            <button onclick="updateValues('area3', 'road')">Road</button>
+            <button onclick="updateValues('area3', 'village')">Village</button>
+            <button onclick="updateValues('area3', 'city')">City</button>
+            <button onclick="updateValues('area3', 'develop')">Develop</button>
+        </div>
+    </div>
+
+    <script>
+        function updateValues(areaId, mode) {
+            const inputs = document.querySelectorAll(`#${areaId} input[type="number"]`);
+
+            switch (mode) {
+                case 'road':
+                    inputs[0].value = Number(inputs[0].value) - 1;
+                    inputs[1].value = Number(inputs[1].value) - 1;
+                    break;
+                case 'village':
+                    inputs[0].value = Number(inputs[0].value) - 1;
+                    inputs[1].value = Number(inputs[1].value) - 1;
+                    inputs[2].value = Number(inputs[2].value) - 1;
+                    inputs[3].value = Number(inputs[3].value) - 1;
+                    break;
+                case 'city':
+                    inputs[3].value = Number(inputs[3].value) - 2;
+                    inputs[4].value = Number(inputs[4].value) - 3;
+                    break;
+                case 'develop':
+                    inputs[2].value = Number(inputs[2].value) - 1;
+                    inputs[3].value = Number(inputs[3].value) - 1;
+                    inputs[4].value = Number(inputs[4].value) - 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
