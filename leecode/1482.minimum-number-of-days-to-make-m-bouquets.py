@@ -16,9 +16,9 @@ class Solution:
 
         bloomDay_sorted = sorted(bloomDay)
 
-        min = m * k
-        max = len(bloomDay_sorted)
-        mid = min + (max - min) // 2
+        min_days = m * k
+        max_days = len(bloomDay_sorted)
+        mid = min_days + (max_days - min_days) // 2
 
         def checkDay(day):
             count = 0
@@ -40,13 +40,13 @@ class Solution:
 
             return False
 
-        while min < max:
+        while min_days < max_days:
             if checkDay(bloomDay_sorted[mid - 1]):
-                max = mid
+                max_days = mid
             else:
-                min = mid + 1
+                min_days = mid + 1
 
-            mid = min + (max - min) // 2
+            mid = min_days + (max_days - min_days) // 2
 
         return bloomDay_sorted[mid - 1]
 
