@@ -12,14 +12,13 @@ class Solution:
 
             if left ** 2 + right ** 2 == c:
                 return True
-            
+
             elif left ** 2 + right ** 2 < c:
                 left += 1
-            
+
             else:
                 right -= 1
         return False
 
-        
-# @lc code=end
 
+# @lc code=end
