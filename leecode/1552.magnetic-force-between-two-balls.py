@@ -6,6 +6,7 @@
 
 # @lc code=start
 import math
+from typing import List
 
 
 class Solution:
